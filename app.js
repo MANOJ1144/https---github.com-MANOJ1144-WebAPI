@@ -9,7 +9,10 @@ const app = express();
 app.use(express.json());
 
 // Set up database connection
-mongoose.connect('mongodb://localhost: 27017/BackendAPI.API' , {
+mongoose.set('strictQuery', false);
+
+// Database setup
+mongoose.connect('mongodb://127.0.0.1:27017/BackendAPI' , {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -22,8 +25,8 @@ mongoose.connect('mongodb://localhost: 27017/BackendAPI.API' , {
   });
 
 // Define routes
-app.use('/userRoute', usersRouter);
-app.use('/product', productsRouter);
+app.use('/users', usersRouter);
+app.use('/products', productsRouter);
 
 // Start the server
 app.listen(3000, () => {
