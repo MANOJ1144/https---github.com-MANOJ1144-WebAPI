@@ -5,8 +5,8 @@ const User = require('../models/user');
 const getUsers = (req, res) => {
   // Logic to fetch all users from the database
   User.find()
-    .then(users => res.json(users))
-    .catch(error => res.status(500).json({ error: 'Internal server error' }));
+     .then(users => res.json(users))
+     . catch(error => res.status(500).json({ error: 'Internal server error' }));
 };
 
 const createUser = (req, res) => {

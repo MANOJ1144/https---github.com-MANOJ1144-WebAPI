@@ -1,5 +1,5 @@
 // productsController.js
-const Product = require('../models/product');
+const  Product = require('../models/product');
 
 // Controller methods
 const getProducts = (req, res) => {
