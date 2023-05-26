@@ -1,32 +1,30 @@
-// app.js
 const express = require('express');
 const mongoose = require('mongoose');
 const usersRouter = require('./routes/user_route');
-const productsRouter = require('./routes/product_route');
 
 // Set up Express app
 const app = express();
 app.use(express.json());
+app.use(userRouter);
+
+
+mongoose.set('strictQuery', false); // Add this line to suppress the deprecation warning
 
 // Set up database connection
-mongoose.set('strictQuery', false);
-
-// Database setup
-mongoose.connect('mongodb://127.0.0.1:27017/BackendAPI' , {
+mongoose.connect('mongodb://localhost:27017/BackendAPI', {
   useNewUrlParser: true,
+  useCreateIndex: true,
   useUnifiedTopology: true
-})
-  .then(() => { 
-    console.log('Connected to MongoDB');
-  })
-  .catch(error => {
-    console.error('Failed to connect to MongoDB:', error);
-    process.exit(1);
-  });
+}).then(() => {
+  console.log('Connected to MongoDB');
+}).catch((error) => {
+  console.log('Failed to connect to MongoDB:', error);
+});
+
 
 // Define routes
-app.use('/users', usersRouter);
-app.use('/products', productsRouter);
+app.use('/user', usersRouter);
+app.use('/product', productsRouter);
 
 // Start the server
 app.listen(3000, () => {

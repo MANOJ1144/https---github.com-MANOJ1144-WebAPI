@@ -1,5 +1,5 @@
 // usersController.js
-const User = require('../models/user');
+const User = require('../models/user_model');
 
 // Controller methods
 const getUsers = (req, res) => {
